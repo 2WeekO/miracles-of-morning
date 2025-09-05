@@ -1,7 +1,7 @@
 
 # MIRACLES OF MORNING Management Application
 아침 일찍 활동을 하게 만드는 헬스 케어 어플리케이션 개발 프로젝트
-![alt text](logo.png)
+![alt text](README/logo.png)
 
 ## Tech Stack
 - express.js (Backend)
