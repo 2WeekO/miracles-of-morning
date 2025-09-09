@@ -1,23 +1,32 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import GoogleButton from "../components/GoogleButton";
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Image, StyleSheet, Text, View } from "react-native";
 import AppButton from "../components/AppButton";
-import { useNavigation } from "expo-router";
+import GoogleButton from "../components/GoogleButton";
+
+type RootStackParamList = {
+  SignupPage: undefined;
+  SigninPage: undefined;
+  // 다른 페이지가 있다면 여기에 추가하세요
+};
 
 export default function Page() {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       <Text style={styles.subtitle}>당신의 아침으로 기적을 만드세요</Text>
       <Image source = {require('../assets/images/logo.png')}/>
       <GoogleButton onPress={() => console.log("Google 로그인")} />
-
-      <AppButton
-        label="회원가입 하기"
-        onPress={() => navigation.navigate("Signup")}
-      />
-      <AppButton
-        label="이메일로 로그인하기"
-        onPress={() => navigation.navigate("Signin")}
-      />
+        
+        <AppButton
+          label="회원가입 하기"
+          onPress={() => navigation.navigate("Auth/SignupPage")}
+        />
+        <AppButton
+          label="이메일로 로그인하기"
+          onPress={() => navigation.navigate("Auth/SigninPage")}
+        />
     </View>
   );
 }

@@ -4,8 +4,8 @@ import { colors } from "../constants/Colors";
 import { spacing } from "../constants/Spacing";
 
 interface AppButtonProps {
-  label: string;
-  onPress?: () => void;
+  readonly label: string;
+  readonly onPress?: () => void;
 }
 
 export default function AppButton({ label, onPress }: AppButtonProps) {
