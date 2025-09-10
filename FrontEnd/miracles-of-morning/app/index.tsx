@@ -1,62 +1,39 @@
 import { useNavigation } from "@react-navigation/native";
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, Text, View } from "react-native";
 import AppButton from "../components/AppButton";
-import GoogleButton from "../components/GoogleButton";
+import layout_style from "./Style/layout_style";
+import SigninPage from "./Auth/SigninPage";
+import SignupPage from "./Auth/SignupPage";
 
-type RootStackParamList = {
-  SignupPage: undefined;
-  SigninPage: undefined;
-  // 다른 페이지가 있다면 여기에 추가하세요
-};
 
-export default function Page() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+
+function Page() {
+  const navigation = useNavigation();
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.subtitle}>당신의 아침으로 기적을 만드세요</Text>
-      <Image source = {require('../assets/images/logo.png')}/>
-      <GoogleButton onPress={() => console.log("Google 로그인")} />
-        
+    <ImageBackground source={ require('../assets/images/start_screen_backgrounds.png')} style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, flex: 1 }} resizeMode="cover">
+      <View style={layout_style.first_screen_container}>
+      <View>
+        <Text style = {layout_style.title}>Miracles of Morning</Text>
+        <Text style={layout_style.subtitle}>기적을 만드는 아침을 경험해보세요</Text>
+      </View>
+      
+
+      <View>
         <AppButton
-          label="회원가입 하기"
-          onPress={() => navigation.navigate("Auth/SignupPage")}
+          label="회원가입"
+          onPress={() => navigation.navigate(SignupPage)}
         />
         <AppButton
-          label="이메일로 로그인하기"
-          onPress={() => navigation.navigate("Auth/SigninPage")}
+          label="기존 계정으로 로그인"
+          onPress={() => navigation.navigate(SigninPage)}
         />
+      </View>
+      
+      
     </View>
+    </ImageBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#1D2028",
-    flex: 1,
-    
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
-  },
-  title: {
-    fontSize: 64,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    fontSize: 18,
-    color: "#ffffffff",
-    marginBottom: 50,
-    fontWeight: 500,
-  },
-  AppButton: {
-    marginTop: 20,
-  },
-});

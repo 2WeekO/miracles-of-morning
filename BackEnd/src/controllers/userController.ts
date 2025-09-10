@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as userService from "../services/userService";
 import jwt from "jsonwebtoken";
-import { error } from "console";
+
 
 // 회원가입 컨트롤러
 export async function signup(req: Request, res: Response) {

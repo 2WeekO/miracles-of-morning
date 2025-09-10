@@ -1,3 +1,8 @@
+import { View, Text } from 'react-native';
+
+
 export default function SigninPage() {
-  return <>This is Signin Page! </>;
+  return (<View>
+    <Text>Signin Page</Text>
+  </View>)
 }

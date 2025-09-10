@@ -14,7 +14,7 @@ export default function GoogleButton({ onPress }: GoogleButtonProps) {
         source={require("./../assets/images/google_logo.png")}
         style={styles.icon}
       />
-      <Text style={styles.label}>Sign in with Google</Text>
+      <Text style={styles.label}>Google 로그인</Text>
     </TouchableOpacity>
   );
 }
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.google,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.lg,
-    borderRadius: 6,
+    borderRadius: 25,
     marginBottom: spacing.sm,
     width: 250,
     justifyContent: "center",
