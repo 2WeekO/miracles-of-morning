@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import * as userService from "../services/userService";
 import jwt from "jsonwebtoken";
+import { error } from "console";
 
 // 회원가입 컨트롤러
 export async function signup(req: Request, res: Response) {
@@ -9,7 +10,7 @@ export async function signup(req: Request, res: Response) {
     const user = await userService.registerUser(email, password, nickname, phonenumber);
     res.status(201).json({ message: "회원가입 성공", user });
   } catch (err: any) {
-    res.status(400).json({ message: "회원가입 실패", err });
+    res.status(400).json({ error: err.message, err });
   }
 }
 

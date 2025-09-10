@@ -8,6 +8,9 @@ export async function registerUser(email: string, password: string, nickname: st
   const existing = await userRepo.findOneBy({ email });
   if (existing) throw new Error("이미 존재하는 이메일입니다.");
 
+  const phonenumberExists = await userRepo.findOneBy({ phonenumber });
+  if (phonenumberExists) throw new Error("이미 존재하는 전화번호입니다.");
+
   const hashed = await bcrypt.hash(password, 10);
   const newUser = userRepo.create({ email, password: hashed, nickname , phonenumber });
   return await userRepo.save(newUser);
