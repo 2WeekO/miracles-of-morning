@@ -12,16 +12,19 @@ export const layout_style = StyleSheet.create({
 
   },
   title: {
+    color: "#ffffffff",
     fontSize: 36,
     fontWeight: "700",
   },
   subtitle: {
     fontSize: 20,
-    color: "#000000ff",
+    color: "#ffffffff",
     marginBottom: 50,
     fontWeight: 500,
   },
-  
+  reserved_text: {
+    color: "#ffffffff",
+  }
   
 });
 

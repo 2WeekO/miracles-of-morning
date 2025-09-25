@@ -18,17 +18,19 @@ export default function AppButton({ label, onPress }: AppButtonProps) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#ffffffff",
+    backgroundColor: "rgba(0, 0, 0, 0.68)",
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.lg,
     borderRadius: 25,
     marginBottom: spacing.sm,
-    width: 350,
+    width: "auto",
+    marginLeft: 20,
+    marginRight:20
   },
   label: {
-    color: colors.primary,
+    color: colors.white,
     textAlign: "center",
     fontWeight: "500",
-    
+
   },
 });

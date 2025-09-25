@@ -9,10 +9,14 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "infoPlist": {
+        "NSCameraUsageDescription": "QR 코드를 스캔하기 위해 카메라 접근이 필요합니다."
+      },
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
+        "permissions": ["CAMERA"],
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
@@ -33,7 +37,9 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

@@ -13,18 +13,20 @@ export const auth_style = StyleSheet.create({
     
   },
   title: {
+    color: colors.white,
     fontSize: 30,
     fontWeight: "700",
     marginBottom: 20,
   },
   input:{
-    color: colors.black,
+    color: colors.white,
     width: 300,
     height: 40,
     margin: 12,
     borderBottomWidth: 1,
     padding: 10,
-    fontSize: 16
+    fontSize: 16,
+    borderBottomColor: colors.white,
   }
 });
 
