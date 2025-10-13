@@ -1,4 +1,3 @@
-import AppButton from "@/components/AppButton";
 import ChallengeCard from "@/components/ChallengeCard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -39,7 +38,7 @@ export default function ChallengeScreen() {
   if (loading) {
     return (
       <View style={styles.loader}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator size="large" color={colors.white} />
       </View>
     );
   }
@@ -54,12 +53,10 @@ export default function ChallengeScreen() {
         <Challengebutton
           label="챌린지 만들기 (1인)"
           onPress={() => router.push("/Extra/CreateChallengeScreen")}
-          style={styles.challengeBtn}
         />
         <Challengebutton
           label="그룹 챌린지 (참가 / 만들기)"
           onPress={() => router.push("/Extra/RoomScreen")}
-          style={styles.challengeBtn}
         />
       </View>
 

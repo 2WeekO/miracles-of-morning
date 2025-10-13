@@ -4,9 +4,9 @@ import { RoomMember } from "../entities/RoomMember";
 import { User } from "../entities/User";
 
 class RoomService {
-  private roomRepo = AppDataSource.getRepository(Room);
-  private memberRepo = AppDataSource.getRepository(RoomMember);
-  private userRepo = AppDataSource.getRepository(User);
+  private readonly roomRepo = AppDataSource.getRepository(Room);
+  private readonly memberRepo = AppDataSource.getRepository(RoomMember);
+  private readonly userRepo = AppDataSource.getRepository(User);
 
   // 방 전체 조회
   async getAllRooms() {

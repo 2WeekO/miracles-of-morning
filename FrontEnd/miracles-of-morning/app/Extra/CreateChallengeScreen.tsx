@@ -13,14 +13,16 @@ import { challengeService } from "../Service/challengeService";
 import BackButton from "@/components/Backbutton";
 import AppButton from "@/components/AppButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { scheduleChallengeNotification } from "../lib/notifications";
 
 export default function CreateChallengeScreen() {
   const router = useRouter();
 
+  // ✅ 모든 state는 항상 Date 타입 유지
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [wakeUpTime, setWakeUpTime] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [wakeUpTime, setWakeUpTime] = useState<Date>(new Date());
   const [depositAmount, setDepositAmount] = useState("");
   const [penaltyAmount, setPenaltyAmount] = useState("");
 
@@ -30,6 +32,7 @@ export default function CreateChallengeScreen() {
       return;
     }
 
+    // ✅ 서버 전송 시에만 string 변환
     const data = {
       title,
       startDate: startDate.toISOString(),
@@ -46,7 +49,12 @@ export default function CreateChallengeScreen() {
         return;
       }
 
+      // 챌린지 생성 API 호출
       await challengeService.create(data, token);
+
+      // 알림 예약
+      await scheduleChallengeNotification("single-" + Date.now(), wakeUpTime);
+
       Alert.alert("성공", "챌린지가 생성되었습니다!");
       router.back();
     } catch (err: any) {

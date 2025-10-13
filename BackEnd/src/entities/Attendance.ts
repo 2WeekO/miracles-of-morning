@@ -4,25 +4,38 @@ import {
   Column,
   ManyToOne,
   CreateDateColumn,
-  Unique
+  Unique,
 } from "typeorm";
+import { Challenge } from "./Challenge";
 import { Room } from "./Room";
 import { User } from "./User";
 
 export enum AttendanceStatus {
   SUCCESS = "success",
   FAIL = "fail",
-  ABSENT = "absent"
+  ABSENT = "absent",
 }
 
 @Entity()
-@Unique(["room", "user", "date"]) // 하루 한 번만 기록 가능
+@Unique(["user", "date", "challenge"]) // ✅ 1인 챌린지 중복 인증 방지
+@Unique(["user", "date", "room"])      // ✅ 그룹 챌린지 중복 인증 방지
 export class Attendance {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @ManyToOne(() => Room, (room) => room.attendances, { onDelete: "CASCADE" })
-  room!: Room;
+  // 1인 챌린지 인증 기록
+  @ManyToOne(() => Challenge, (challenge) => challenge.attendances, {
+    nullable: true,
+    onDelete: "CASCADE",
+  })
+  challenge?: Challenge;
+
+  // 그룹 챌린지 인증 기록
+  @ManyToOne(() => Room, (room) => room.attendances, {
+    nullable: true,
+    onDelete: "CASCADE",
+  })
+  room?: Room;
 
   @ManyToOne(() => User, (user) => user.attendances, { onDelete: "CASCADE" })
   user!: User;
@@ -33,7 +46,7 @@ export class Attendance {
   @Column({
     type: "enum",
     enum: AttendanceStatus,
-    default: AttendanceStatus.ABSENT
+    default: AttendanceStatus.ABSENT,
   })
   status!: AttendanceStatus;
 

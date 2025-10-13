@@ -7,6 +7,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { User } from "./User";
+import { Attendance } from "./Attendance";
 import { Transaction } from "./Transaction";
 
 export enum ChallengeStatus {
@@ -65,4 +66,7 @@ export class Challenge {
   // 관련된 트랜잭션 (예치금/환급/패널티 등)
   @OneToMany(() => Transaction, (transaction) => transaction.challenge)
   transactions!: Transaction[];
+
+  @OneToMany(() => Attendance, (attendance) => attendance.challenge)
+  attendances!: Attendance[];
 }

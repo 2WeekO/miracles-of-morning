@@ -1,53 +1,26 @@
-import React from "react";
-import { ImageBackground, Text, View } from "react-native";
+import React, { useEffect } from "react";
 import { useRouter } from "expo-router";
-import AppButton from "../components/AppButton";
-import layout_style from "./Style/layout_style";
+import { requestNotificationPermissions, addNotificationResponseListener } from "./lib/notifications";
+import StartScreen from "./StartScreen";
 
 
 
-export default function StartScreen() {
+export default function RootLayout() {
   const router = useRouter();
-  const signup = "/Auth/SignupScreen";
-  const signin = "/Auth/SigninScreen";
 
-  return (
-    <ImageBackground
-      source={require("../assets/images/start_screen_backgrounds.png")}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        flex: 1,
-      }}
-      resizeMode="cover"
-    >
-      <View style={layout_style.first_screen_container}>
-        <View style={{ alignItems: "center" }}>
-          <Text style={layout_style.title}>Miracles of Morning</Text>
-          <Text style={layout_style.subtitle}>
-            기적을 만드는 아침을 경험해보세요
-          </Text>
-        </View>
+  useEffect(() => {
+    // 권한 요청
+    requestNotificationPermissions();
 
-        <View style={{ alignItems: "center" }}>
-          <AppButton
-            label="회원가입"
-            onPress={() => router.push(signup)}
-          />
-          <AppButton
-            label="기존 계정으로 로그인"
-            onPress={() => router.push(signin)}
-          />
+    // 알림 클릭 → QRScannerScreen 이동
+    const sub = addNotificationResponseListener((challengeId) => {
+      if (challengeId) {
+        router.push(`/Extra/QRScannerScreen?id=${challengeId}`);
+      }
+    });
 
-          <Text style={layout_style.reserved_text}>ⓒ 2025, Miracles of morning.</Text>
-          <Text style={layout_style.reserved_text}>All rights reserved </Text>
-        </View>
+    return () => sub.remove();
+  }, []);
 
-      </View>
-    </ImageBackground>
-  );
+  return <StartScreen />;
 }
-

@@ -47,7 +47,7 @@ AppDataSource.initialize()
   .then(() => {
     console.log(" MySQL 데이터베이스 연결 성공");
     httpServer.listen(PORT, () => {
-      console.log(` 서버 실행 중: http://172.30.1.99:${PORT}`);
+      console.log(` ${PORT}번 포트에서 서버 실행 중...`);
     });
   })
   .catch((err) => console.error("❌ DB 연결 실패:", err));

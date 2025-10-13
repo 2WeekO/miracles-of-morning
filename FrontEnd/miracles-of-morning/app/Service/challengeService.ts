@@ -32,4 +32,11 @@ export const challengeService = {
     api.delete(`/challenges/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     }),
+  
+  // 인증
+  verify(id: string, data: any, token: string) {
+    return api.post(`/challenges/${id}/verify`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
 };

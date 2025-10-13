@@ -12,7 +12,9 @@ import { router, useLocalSearchParams } from "expo-router";
 import { roomService } from "../Service/roomService";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
-import { socket } from "../lib/socket"; // ✅ 소켓 연결
+import { socket } from "../lib/socket";
+import BackButton from "@/components/Backbutton";
+
 
 export default function RoomDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -107,11 +109,11 @@ export default function RoomDetailScreen() {
         <Text style={styles.subText}>방장: {room.host?.nickname ?? "알 수 없음"}</Text>
 
         {/* 추가된 속성들 */}
-        <Text style={styles.subText}>⏰ 목표 기상 시간: {room.wakeUpTime}</Text>
-        <Text style={styles.subText}>💰 예치금: {room.depositAmount}원</Text>
-        <Text style={styles.subText}>⚠️ 차감 금액: {room.penaltyAmount}원</Text>
+        <Text style={styles.subText}>목표 시간: {room.wakeUpTime}</Text>
+        <Text style={styles.subText}>예치금: {room.depositAmount}원</Text>
+        <Text style={styles.subText}>차감 금액: {room.penaltyAmount}원</Text>
         <Text style={styles.subText}>
-          🔒 공개 여부: {room.isPrivate ? "비공개" : "공개"}
+          공개 여부: {room.isPrivate ? "비공개" : "공개"}
         </Text>
         {room.isPrivate && <Text style={styles.subText}>비밀번호: ******</Text>}
       </View>

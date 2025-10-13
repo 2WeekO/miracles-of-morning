@@ -26,4 +26,6 @@ export const roomService = {
       { roomId, userId },
       { headers: { Authorization: `Bearer ${token}` } }
     ),
+
+  
 };
