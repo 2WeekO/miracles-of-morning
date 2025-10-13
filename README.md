@@ -94,4 +94,24 @@
 - OpenTelemetry 기반 서비스 모니터링 학습 및 적용 예정  
 - 모바일 푸시 알림 최적화 및 사용자 알림 이력 저장 기능 보완  
 
+---
+## 모바일 앱 챌린지 인증 자동화 시스템 구현
+- QR 코드 기반 자동 인증 시스템 설게 및 구현
+- Expo Notifications을 활용한 자동 알림 시스템 구축
+- 사용자 인증 프로세스 자동화로 편의성 향상
+- 실시간 WebSocket 통신으로 즉각적인 상태 업데이트 구현
+
+## Cross-Platfrom 모바일 앱 서비스 개발
+- TypeScript/Node.js 기반 백엔드 서버 구축
+- TypeORM을 활용한 효율적인 데이터베이스 관리
+- RESTful API 설계 및 구현
+- React Native/Expo를 활용한 크로스 플랫폼 앱 개발
+- WebSocket을 활용한 실시간 데이터 동기화
+
+## 객체지향 설계 원칙 적용
+- Entity 계층 설계에 SOLID 원칙 적용
+- Service/Repository 패턴을 통한 관심사 분리
+- TypeORM을 활용한 객체 관계 매핑 구현
+- 컴포넌트 기반 UI 아키텍처 설계
+
 
